@@ -44,7 +44,8 @@
 				</tr>
 				{% endfor %}
 			</table>
-			<button class="btn btn-success">Exportar CSV</button>
+			<a href="{% url 'export' 'xls' %}" class="btn btn-success">Exportar XLS</a>
+			<a href="{% url 'export' 'csv' %}" class="btn btn-success">Exportar CSV</a>
 		</div>
 	</body>
 </html>

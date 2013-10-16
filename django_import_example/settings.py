@@ -1,7 +1,10 @@
 # Django settings for django_import_example project.
-
+#encoding:utf-8
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+URL_BASE = "http://localhost:8000"
+DEFAULT_FORMATS = ("xls", "csv")
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -50,12 +53,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.sep.join([os.path.dirname(os.path.dirname(__file__)), 'media'])
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files

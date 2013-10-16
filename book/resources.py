@@ -6,3 +6,4 @@ class BookResource(resources.ModelResource):
 
     class Meta:
         model = Book
+        exclude = ('imported', 'categories')

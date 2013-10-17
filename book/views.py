@@ -9,6 +9,7 @@ def home(request):
     obj_list = Book.objects.all()
     return render_to_response("home.html", locals(), context_instance=RequestContext(request))
 
+
 def export_books(request, format):
     from book.resources import BookResource
     from django.core.files import File
@@ -26,3 +27,25 @@ def export_books(request, format):
             return HttpResponse("Error, Exception")
     else:
         return HttpResponseRedirect("/")
+
+
+def import_books(request, format):
+    if request.method == "POST":
+        from .forms import ImportForm
+        form = ImportForm(request.POST, request.FILES)
+        if form.is_valid():
+            import_file = request.FILES['import_file']
+            from xlrd import open_workbook
+            wb = open_workbook(file_contents=import_file.read())
+            data = list()
+            for s in wb.sheets():
+                print 'Sheet:', s.name
+                for row in range(s.nrows):
+                    values = []
+                    for col in range(s.ncols):
+                        values.append(s.cell(row, col).value)
+                    print "TO_MODEL", values
+                    data.append(values)
+    else:
+        form = ImportForm()
+    return render_to_response("form.html", locals(), context_instance=RequestContext(request))

@@ -1,51 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <meta name="description" content="">
-	    <meta name="author" content="">
-		<title>Django Import Export</title>
-    	<link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.png">
-    	<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
-	</head>
-	<body>
-	    <div class="container">
-			<h1>Hello Django Import Export</h1>
-			<table class="table table-hover table-striped tabler-bordered">
-				<tr>
-					<th>N&uacute;mero</th>
-					<th>Nombre</th>
-					<th>Autor</th>
-					<th>Correo del Autor</th>
-					<th>Fecha de publicaci&oacute;n</th>
-					<th>Precio</th>
-				</tr>
-				{% for obj in obj_list %}
-				<tr>
-					<td>
-					{{ obj.id }}
-					</td>
-					<td>
-					{{ obj.name }}
-					</td>
-					<td>
-					{{ obj.author }}
-					</td>
-					<td>
-					{{ obj.author_email }}
-					</td>
-					<td>
-					{{ obj.published }}
-					</td>
-					<td>
-					${{ obj.price }}
-					</td>
-				</tr>
-				{% endfor %}
-			</table>
-			<a href="{% url 'export' 'xls' %}" class="btn btn-success">Exportar XLS</a>
-			<a href="{% url 'export' 'csv' %}" class="btn btn-success">Exportar CSV</a>
-		</div>
-	</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-hover table-striped tabler-bordered">
+	<tr>
+		<th>N&uacute;mero</th>
+		<th>Nombre</th>
+		<th>Autor</th>
+		<th>Correo del Autor</th>
+		<th>Fecha de publicaci&oacute;n</th>
+		<th>Precio</th>
+	</tr>
+	{% for obj in obj_list %}
+	<tr>
+		<td>
+		{{ obj.id }}
+		</td>
+		<td>
+		{{ obj.name }}
+		</td>
+		<td>
+		{{ obj.author }}
+		</td>
+		<td>
+		{{ obj.author_email }}
+		</td>
+		<td>
+		{{ obj.published }}
+		</td>
+		<td>
+		${{ obj.price }}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+<a href="{% url 'export' 'xls' %}" class="btn btn-success">Exportar XLS</a>
+<a href="{% url 'export' 'csv' %}" class="btn btn-success">Exportar CSV</a>
+| 
+<a href="{% url 'import' 'xls' %}" class="btn btn-success">Importar XLS</a>
+<a href="{% url 'import' 'csv' %}" class="btn btn-success">Importar CSV</a>
+{% endblock %}

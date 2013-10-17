@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'book.views.home', name='home'),
     url(r'^export/(?P<format>[a-z]+)$', 'book.views.export_books', name='export'),
+    url(r'^import/(?P<format>[a-z]+)$', 'book.views.import_books', name='import'),
     # url(r'^django_import_example/', include('django_import_example.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

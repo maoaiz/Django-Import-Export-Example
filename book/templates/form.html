@@ -10,11 +10,14 @@
 </form>
 {% if data %}
 	<hr>
+	<table class="table">
 	{% for row in data %}
+		<tr>
 		{% for cell in row %}
-			{{ cell }}
+			<td>{{ cell }}</td>
 		{% endfor %}
-		<br>
+		</tr>
 	{% endfor %}
+	</table>
 {% endif %}
 {% endblock %}

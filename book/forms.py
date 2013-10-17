@@ -6,7 +6,7 @@ IMPORT_FILE_TYPES = ['.xls', ]
 class ImportForm(forms.Form):
     import_file = forms.FileField(
 					required= True,
-					label= u"Upload the Excel file to import to the system."
+					label= u"Selecione un archivo Excel (.xls)"
 				)
 
     def clean_import_file(self):
@@ -14,7 +14,7 @@ class ImportForm(forms.Form):
         import_file = self.cleaned_data['import_file']
         extension = os.path.splitext( import_file.name )[1]
         if not (extension in IMPORT_FILE_TYPES):
-            raise forms.ValidationError( u'%s is not a valid excel file. Please make sure your input file is an excel file (Excel 2007 is NOT supported.' % extension )
+            raise forms.ValidationError( u'%s no es un archivo Excel válido. Please make sure your input file is an excel file (Excel 2007 is NOT supported.' % extension )
         else:
             return import_file
 

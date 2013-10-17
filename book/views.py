@@ -30,8 +30,8 @@ def export_books(request, format):
 
 
 def import_books(request, format):
+    from .forms import ImportForm
     if request.method == "POST":
-        from .forms import ImportForm
         form = ImportForm(request.POST, request.FILES)
         if form.is_valid():
             import_file = request.FILES['import_file']
@@ -41,11 +41,10 @@ def import_books(request, format):
             for s in wb.sheets():
                 print 'Sheet:', s.name
                 for row in range(s.nrows):
-                    values = []
+                    values_list = []
                     for col in range(s.ncols):
-                        values.append(s.cell(row, col).value)
-                    print "TO_MODEL", values
-                    data.append(values)
+                        values_list.append(s.cell(row, col).value)
+                    data.append(values_list)  # 
     else:
         form = ImportForm()
     return render_to_response("form.html", locals(), context_instance=RequestContext(request))

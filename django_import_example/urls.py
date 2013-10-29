@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'book.views.home', name='home'),
+    url(r'^export_xls$', 'book.views.export_xls', name='export_xls'),
     url(r'^export/(?P<format>[a-z]+)$', 'book.views.export_books', name='export'),
     url(r'^import/(?P<format>[a-z]+)$', 'book.views.import_books', name='import'),
     # url(r'^django_import_example/', include('django_import_example.foo.urls')),
